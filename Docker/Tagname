@@ -1,0 +1,2 @@
+source <(cat Registry Project Repository Version)
+Tagname=${Registry}/${Project}/${Repository}:${Version}

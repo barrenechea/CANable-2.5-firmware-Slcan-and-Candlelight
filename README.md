@@ -24,6 +24,10 @@ Please read the detailed
 
 https://netcult.ch/elmue/CANable%20Firmware%20Update/
 
+## Building Firmware using docker
+
+In the `Docker` directory, you will find ressources to compile (in a docker container) all the variants of the firmware.
+
 ## Updating Firmware on Linux & macOS
 
 _Source: [CANtact](https://cantact.io/cantact/users-guide.html#linux--macos). Make sure to have your device in DFU mode._
