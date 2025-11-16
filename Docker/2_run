@@ -1,0 +1,11 @@
+#!/bin/bash
+
+source Tagname
+common_params="--rm ${env_file} -h ${Repository} --name ${Repository} -t ${Tagname}"
+
+[[ ! -d ./output ]] && mkdir ./output
+mount_params="--volume ./output:/mnt"
+
+docker run ${mount_params} ${common_params} ./build_and_move_to_volume 
+
+# EOF
