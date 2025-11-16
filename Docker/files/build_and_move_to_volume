@@ -1,0 +1,25 @@
+#!/bin/bash
+
+target="/mnt"
+logs_d=${target}/logs
+mkdir -p ${logs_d}
+
+# Build and save logs
+mf_base="Make_G431"
+for t1 in Candle Slcan; do
+        for t2 in MksMakerbase Openlightlabs; do
+                mf=${mf_base}_${t1}_${t2}
+                echo "- Building ${mf}"
+                make -s -f ${mf} > ${logs_d}/${t1}_${t2}.logs 2>&1
+        done
+done
+
+# Move to target volume
+for build_dir in $(find . -mindepth 1 -maxdepth 1 -type d -name 'Build_*' -exec basename {} \;); do
+        echo "- Processing ${build_dir}"
+        [[ -d ${target}/${build_dir} ]] && rm -rf ${target}/${build_dir}
+        [[ -d ${build_dir} ]] && cp -rp ${build_dir} ${target}/${build_dir} || echo "${build_dir} not found"
+        rm -rf ${build_dir}
+done
+
+# EOF

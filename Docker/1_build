@@ -1,0 +1,9 @@
+#!/bin/bash
+
+source Tagname
+
+CANABLE_GIT_URL=$(git config get remote.origin.url | sed 's?git@github.com:?https://github.com/?')
+
+docker build . --build-arg CANABLE_GIT_URL=${CANABLE_GIT_URL} -t ${Tagname}
+
+# EOF
